@@ -15,7 +15,7 @@ class Signin extends Component {
       <div>
         <input className="form-control" {...input} type={type} />
       </div>
-      {touched && ((error && <div className="alert alert-danger p-1"><small>{error}</small></div>))}
+      {touched && ((error && <div className="error"><small>{error}</small></div>))}
     </div>
   );
 

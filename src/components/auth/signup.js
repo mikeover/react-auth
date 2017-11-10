@@ -10,15 +10,19 @@ class Signup extends Component {
       <div>
         <input className="form-control" {...input} type={type} />
       </div>
-      {touched && ((error && <div className="alert alert-danger p-1"><small>{error}</small></div>))}
+      {touched && ((error && <div className="error"><small>{error}</small></div>))}
     </div>
   );
+
+  handleFormSubmit(values) {
+    console.log("FORM SUBMIT", values);
+  }
 
   render() {
     const { handleSubmit } = this.props;
 
     return (
-      <form>
+      <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
         <fieldset className="form-group">
           <Field name="email" label="Email" component={this.renderField} type="text" />
         </fieldset>
@@ -34,6 +38,25 @@ class Signup extends Component {
   }
 }
 
+function validate(values) {
+  const errors = {};
+
+  if (!values.email) {
+    errors.email = "Please enter an email";
+  }
+  if (!values.password) {
+    errors.password = "Please enter a password";
+  }
+  if (!values.passwordConfirm) {
+    errors.passwordConfirm = "Please confirm password";
+  } else if (values.password != values.passwordConfirm) {
+    errors.passwordConfirm = "Passwords do not match";
+  }
+
+  return errors;
+}
+
 export default connect(null, actions)(reduxForm({
-  form: 'signup'
+  form: 'signup',
+  validate
 })(Signup));
