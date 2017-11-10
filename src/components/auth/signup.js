@@ -15,7 +15,17 @@ class Signup extends Component {
   );
 
   handleFormSubmit(values) {
-    console.log("FORM SUBMIT", values);
+    this.props.signupUser(values);
+  }
+
+  renderAlert() {
+    if (this.props.errorMessage) {
+      return (
+        <div className="alert alert-danger">
+          <strong>Oops!</strong> {this.props.errorMessage}
+        </div>
+      );
+    }
   }
 
   render() {
@@ -32,6 +42,7 @@ class Signup extends Component {
         <fieldset className="form-group">
           <Field name="passwordConfirm" label="Confirm Password" component={this.renderField} type="password" />
         </fieldset>
+        {this.renderAlert()}
         <button action="submit" className="btn btn-primary">Sign up</button>
       </form>
     );
@@ -56,7 +67,11 @@ function validate(values) {
   return errors;
 }
 
-export default connect(null, actions)(reduxForm({
+function mapStateToProps(state) {
+  return { errorMessage: state.auth.error };
+}
+
+export default connect(mapStateToProps, actions)(reduxForm({
   form: 'signup',
   validate
 })(Signup));
