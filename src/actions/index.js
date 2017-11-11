@@ -4,7 +4,8 @@ import {
   AUTH_USER,
   UNAUTH_USER,
   AUTH_ERROR,
-  SIGNUP_USER
+  SIGNUP_USER,
+  FETCH_MESSAGE,
 } from './types';
 
 const ROOT_URL = 'http://localhost:3090';
@@ -67,7 +68,11 @@ export function fetchMessage() {
       headers: { authorization: localStorage.getItem('token') }
     })
       .then(response => {
-        console.log(response);
+        console.log(response.data.message);
+        dispatch({
+          type: FETCH_MESSAGE,
+          payload: response.data.message
+        });
       });
   };
 }
