@@ -76,3 +76,14 @@ export function fetchMessage() {
       });
   };
 }
+
+// What this would look like if we used reduxPromise instead
+export function fetchMessageWithReduxPromise() {
+  const request = axios.get(ROOT_URL, {
+    headers: { authorization: localStorage.getItem('token') }
+  });
+  return {
+    type: FETCH_MESSAGE,
+    payload: request
+  };
+}
