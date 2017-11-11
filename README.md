@@ -1,25 +1,32 @@
-# ReduxSimpleStarter
+# React Auth
 
-Interested in learning [Redux](https://www.udemy.com/react-redux/)?
+A boilerplace project for an authenticated React single page application.
+
+### Dependencies
+
+This project only contains the front-end React code. It requires a backend that supports authentication, such as https://github.com/mikeover/node-api. That server project requires mongoDB.
 
 ### Getting Started
 
-There are two methods for getting started with this repo.
-
-#### Familiar with Git?
-Checkout this repo, install dependencies, then start the gulp process with the following:
-
 ```
-> git clone https://github.com/StephenGrider/ReduxSimpleStarter.git
-> cd ReduxSimpleStarter
+> git clone https://github.com/mikeover/node-api.git
+> cd node-api
 > npm install
-> npm start
+> npm run dev
 ```
 
-#### Not Familiar with Git?
-Click [here](https://github.com/StephenGrider/ReactStarter/releases) then download the .zip file.  Extract the contents of the zip file, then open your terminal, change to the project directory, and:
-
 ```
+> git clone https://github.com/mikeover/react-auth.git
+> cd react-auth
 > npm install
-> npm start
+> npm run start
+```
+
+#### Installing MongoDB on Mac (for server project node-api)
+
+```
+> brew install mongodb
+> sudo mkdir -p /data/db
+> sudo chown -R $USER /data/db
+> mongod // run mongo
 ```
